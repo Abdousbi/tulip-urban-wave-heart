@@ -1,0 +1,222 @@
+@import "tailwindcss";
+
+@theme {
+  --color-nova-bg: #050d1f;
+  --color-nova-surface: #071428;
+  --color-nova-elevated: #0a1a36;
+  --color-nova-primary: #00d4ff;
+  --color-nova-accent: #7c8cf8;
+  --color-nova-text: #e6f4ff;
+  --color-nova-muted: #4a5f7f;
+  --color-nova-live: #3dff9a;
+  --color-nova-danger: #ff5d7a;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Share Tech Mono", ui-monospace, "SF Mono", monospace;
+  --radius-nova: 14px;
+}
+
+@layer base {
+  html,
+  body,
+  #app {
+    background: var(--color-nova-bg);
+    color: var(--color-nova-text);
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  input,
+  textarea {
+    caret-color: var(--color-nova-primary);
+  }
+}
+
+/* HUD grid */
+.nova-grid {
+  background-color: var(--color-nova-bg);
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--color-nova-primary) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--color-nova-primary) 5%, transparent) 1px, transparent 1px),
+    radial-gradient(ellipse 80% 60% at 50% 42%, color-mix(in oklab, var(--color-nova-primary) 14%, transparent), transparent 62%);
+  background-size: 48px 48px, 48px 48px, 100% 100%;
+}
+
+.nova-scanlines {
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 2px,
+    color-mix(in oklab, #000 18%, transparent) 3px
+  );
+  mix-blend-mode: multiply;
+  opacity: 0.35;
+}
+
+.holo-frame {
+  position: relative;
+  background: color-mix(in oklab, var(--color-nova-surface) 78%, transparent);
+  border: 1px solid color-mix(in oklab, var(--color-nova-primary) 26%, transparent);
+  box-shadow:
+    inset 0 0 24px color-mix(in oklab, var(--color-nova-primary) 8%, transparent),
+    0 0 28px color-mix(in oklab, var(--color-nova-primary) 8%, transparent);
+}
+
+.holo-frame .c {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  pointer-events: none;
+}
+
+.holo-frame .c.tl { top: -1px; left: -1px; border-top: 2px solid var(--color-nova-primary); border-left: 2px solid var(--color-nova-primary); }
+.holo-frame .c.tr { top: -1px; right: -1px; border-top: 2px solid var(--color-nova-primary); border-right: 2px solid var(--color-nova-primary); }
+.holo-frame .c.bl { bottom: -1px; left: -1px; border-bottom: 2px solid var(--color-nova-primary); border-left: 2px solid var(--color-nova-primary); }
+.holo-frame .c.br { bottom: -1px; right: -1px; border-bottom: 2px solid var(--color-nova-primary); border-right: 2px solid var(--color-nova-primary); }
+
+.glow-cyan {
+  text-shadow: 0 0 12px color-mix(in oklab, var(--color-nova-primary) 55%, transparent);
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: var(--color-nova-live);
+  box-shadow: 0 0 10px var(--color-nova-live);
+  animation: live-breathe 1.8s ease-in-out infinite;
+}
+
+@keyframes live-breathe {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(0.82); }
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+@keyframes spin-rev {
+  to { transform: rotate(-360deg); }
+}
+@keyframes core-pulse {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.12); }
+}
+@keyframes eye-glow {
+  0%, 100% { opacity: 0.75; filter: url(#nova-glow); }
+  50% { opacity: 1; }
+}
+@keyframes sweep {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes flicker {
+  0%, 100% { opacity: 0.92; }
+  47% { opacity: 0.92; }
+  50% { opacity: 0.7; }
+  52% { opacity: 0.95; }
+  84% { opacity: 0.9; }
+  86% { opacity: 1; }
+}
+@keyframes ring-out {
+  0% { transform: scale(1); opacity: 0.55; }
+  100% { transform: scale(1.85); opacity: 0; }
+}
+@keyframes bar-wave {
+  0%, 100% { transform: scaleY(0.35); }
+  50% { transform: scaleY(1); }
+}
+@keyframes scan-y {
+  0% { top: 8%; opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% { top: 88%; opacity: 0; }
+}
+@keyframes hud-shimmer {
+  0% { background-position: -120% 0; }
+  100% { background-position: 220% 0; }
+}
+@keyframes float-dot {
+  0%, 100% { transform: translateY(0); opacity: 0.25; }
+  50% { transform: translateY(-10px); opacity: 0.8; }
+}
+@keyframes dash-draw {
+  to { stroke-dashoffset: -240; }
+}
+
+.orbit {
+  animation: spin-slow 22s linear infinite;
+}
+.orbit-rev {
+  animation: spin-rev 16s linear infinite;
+}
+.orbit-fast {
+  animation: spin-slow 8s linear infinite;
+}
+
+.core-pulse { animation: core-pulse 2.4s ease-in-out infinite; }
+.eye-pulse { animation: eye-glow 2.2s ease-in-out infinite; }
+.holo-flicker { animation: flicker 5.5s linear infinite; }
+.scan-beam {
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-nova-primary), transparent);
+  animation: scan-y 4.8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.ring-listen {
+  animation: ring-out 1.8s ease-out infinite;
+}
+
+.wave-bar {
+  transform-origin: center;
+  animation: bar-wave 0.9s ease-in-out infinite;
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in oklab, var(--color-nova-primary) 55%, transparent) 50%,
+    transparent 100%
+  );
+  background-size: 40% 100%;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: color-mix(in oklab, var(--color-nova-muted) 80%, var(--color-nova-primary));
+  animation: hud-shimmer 1.6s linear infinite;
+}
+
+.hud-active {
+  color: var(--color-nova-primary);
+  text-shadow: 0 0 10px color-mix(in oklab, var(--color-nova-primary) 50%, transparent);
+}
+
+.nova-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklab, var(--color-nova-primary) 35%, transparent) transparent;
+}
+.nova-scroll::-webkit-scrollbar { width: 6px; }
+.nova-scroll::-webkit-scrollbar-thumb {
+  background: color-mix(in oklab, var(--color-nova-primary) 35%, transparent);
+  border-radius: 99px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit, .orbit-rev, .orbit-fast, .core-pulse, .eye-pulse, .holo-flicker,
+  .scan-beam, .ring-listen, .wave-bar, .shimmer, .live-dot {
+    animation: none !important;
+  }
+}

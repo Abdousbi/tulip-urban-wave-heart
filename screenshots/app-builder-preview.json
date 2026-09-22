@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "NOVA",
+      "hasCanvas": false,
+      "bodyTextLen": 321,
+      "bodyTextHash": "259d1e217d9f684882fc93a8bb05a6d26857b84a9fc72de1aeff883a28955981",
+      "bodyTextPrefix": "NOVA AI HOLOGRAPHIC OPS AUTO CHAT ACTION LIVE MODE Online SYS / ",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "NOVA",
+      "hasCanvas": false,
+      "bodyTextLen": 131,
+      "bodyTextHash": "fb216617531269dfeee85dce57aea8fd23e57b5fe61e1056887a3837d25779d1",
+      "bodyTextPrefix": "NOVA AI AUTO CHAT ACTION LIVE MODE THINKING SEARCHING ANALYZING ",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}
